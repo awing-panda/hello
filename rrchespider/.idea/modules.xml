@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/rrchespider.iml" filepath="$PROJECT_DIR$/.idea/rrchespider.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../rrchespider_servant/.idea/rrchespider_servant.iml" filepath="$PROJECT_DIR$/../rrchespider_servant/.idea/rrchespider_servant.iml" />
     </modules>
   </component>
 </project>

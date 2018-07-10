@@ -1,8 +1,9 @@
 
 import json
+import re
 
 from scrapy import Request
-from scrapy.spider import Spider
+from scrapy.spiders import Spider
 from scrapy.selector import Selector
 
 from rrchespider.items import RrchespiderItem
@@ -36,7 +37,7 @@ class RenRenChespider(Spider):
                                  callback=self.parse_car_brand)
 
     def parse_car_brand(self, response):
-        """通过每个城市的url 获取所有汽车种类的url """
+        # 爬城市不全,需爬每个车型
         selector = Selector(response)
         # 城市名称
         city_name = response.meta.get('city_name')
@@ -62,7 +63,7 @@ class RenRenChespider(Spider):
                           callback=self.parse_car_info)
 
     def parse_car_info(self, response):
-        """获取页面 汽车的详细 信息"""
+        #汽车的详细
 
         item = RrchespiderItem()
         # 城市名称
@@ -76,7 +77,7 @@ class RenRenChespider(Spider):
         car_brand_name_en = response.meta.get('car_brand_name_en')
         item['car_brand_name_en'] = car_brand_name_en
 
-        selector = scrapy.Selector(response)
+        selector = Selector(response)
         car_info_list = selector.xpath('//ul[@class="row-fluid list-row js-car-list"]/li')
         if car_info_list:
             for car in car_info_list:
